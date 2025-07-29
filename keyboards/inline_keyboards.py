@@ -148,7 +148,7 @@ def get_plan_type_selection_menu_user(server_id: int):
 def get_fixed_plan_selection_menu(plans: list):
     markup = types.InlineKeyboardMarkup(row_width=1)
     for plan in plans:
-        button_text = f"{plan['name']} - {plan['volume_gb']:.1f}GB / {plan['duration_days']} روز - {plan['price']:,.0f} تومان"
+        button_text = f"{plan['name']}"
         markup.add(types.InlineKeyboardButton(button_text, callback_data=f"buy_select_plan_{plan['id']}"))
     markup.add(get_back_button("user_buy_service").keyboard[0][0]) # Back to server selection
     return markup
