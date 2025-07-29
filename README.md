@@ -26,8 +26,7 @@
 برای نصب کامل ربات روی یک سرور خام (Ubuntu 20.04/22.04)، کافیست دستور زیر را به عنوان کاربر `root` اجرا کنید. این اسکریپت تمام مراحل را به صورت خودکار انجام می‌دهد:
 
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/aliafrazeh/telegrambot-v2ray-netsafe
-/main/install.sh) install
+bash <(curl -Ls https://raw.githubusercontent.com/aliafrazeh/telegrambot-v2ray-netsafe/refs/heads/main/install.sh) install
 ```
 
 
