@@ -81,7 +81,7 @@ if not BOT_TOKEN or not ADMIN_IDS or not ENCRYPTION_KEY:
 print(f"✅ ادمین‌های شناسایی شده: {ADMIN_IDS}")
 
 # --- تنظیمات اختیاری ---
-SUPPORT_CHANNEL_LINK = os.getenv("SUPPORT_CHANNEL_LINK_ALAMOR", "https://t.me/YourSupportChannel")
+SUPPORT_CHANNEL_LINK = os.getenv("SUPPORT_CHANNEL_LINK_ALAMOR", "https://t.me/qt_w8")
 REQUIRED_CHANNEL_ID_STR = os.getenv("REQUIRED_CHANNEL_ID_ALAMOR")
 REQUIRED_CHANNEL_ID = int(REQUIRED_CHANNEL_ID_STR) if REQUIRED_CHANNEL_ID_STR and REQUIRED_CHANNEL_ID_STR.lstrip('-').isdigit() else None
 REQUIRED_CHANNEL_LINK = os.getenv("REQUIRED_CHANNEL_LINK_ALAMOR", "https://t.me/YourChannelLink")
