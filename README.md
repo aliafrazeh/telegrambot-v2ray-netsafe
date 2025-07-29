@@ -2,7 +2,7 @@
 
 AlamorVPN Bot یک ربات تلگرامی قدرتمند و ماژولار است که برای فروشندگان و مدیران سرویس‌های VPN (مبتنی بر پنل‌های X-UI/3X-UI) طراحی شده است. این ربات با اتوماسیون کامل فرآیندهای مدیریت سرور، فروش اشتراک، و پردازش پرداخت، به شما کمک می‌کند تا کسب‌وکار خود را به سادگی از طریق تلگرام مدیریت کنید.
 
-**نکته:** برای هر گونه سوال، پیشنهاد یا گزارش باگ، به کانال تلگرام ما به آدرس [https://t.me/Alamor_Network](https://t.me/Alamor_Network) مراجعه کنید.
+
 
 ---
 ## ✨ قابلیت‌های کلیدی
@@ -26,7 +26,8 @@ AlamorVPN Bot یک ربات تلگرامی قدرتمند و ماژولار اس
 برای نصب کامل ربات روی یک سرور خام (Ubuntu 20.04/22.04)، کافیست دستور زیر را به عنوان کاربر `root` اجرا کنید. این اسکریپت تمام مراحل را به صورت خودکار انجام می‌دهد:
 
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/AlamorNetwork/AlamorVPN_Bot/main/install.sh) install
+bash <(curl -Ls https://raw.githubusercontent.com/aliafrazeh/telegrambot-v2ray-netsafe
+/main/install.sh) install
 ```
 
 
