@@ -12,7 +12,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # --- Variables ---
-REPO_URL="https://github.com/AlamorNetwork/AlamorVPN_Bot.git"
+REPO_URL="https://github.com/aliafrazeh/telegrambot-v2ray-netsafe.git"
 PROJECT_NAME="AlamorVPN_Bot"
 INSTALL_DIR="/var/www/alamorvpn_bot"
 BOT_SERVICE_NAME="alamorbot.service"
