@@ -63,8 +63,7 @@ def get_user_management_inline_menu():
 def get_plan_type_selection_menu_admin():
     markup = types.InlineKeyboardMarkup(row_width=2)
     markup.add(
-        types.InlineKeyboardButton("ماهانه (Fixed)", callback_data="plan_type_fixed_monthly"),
-        types.InlineKeyboardButton("حجمی (Gigabyte)", callback_data="plan_type_gigabyte_based"),
+        types.InlineKeyboardButton("ماهانه", callback_data="plan_type_fixed_monthly"),
         types.InlineKeyboardButton("🔙 انصراف", callback_data="admin_plan_management")
     )
     return markup
