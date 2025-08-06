@@ -126,7 +126,7 @@ class ConfigGenerator:
             if protocol not in ['vless', 'vmess']: return None
 
             remark = f"{remark_prefix}-{inbound_details.get('remark', server_data['name'])}"
-            address = '62.60.147.236'
+            address = 'xx.xxx.xxx.xx'
             port = inbound_details.get('port')
             
             stream_settings = json.loads(inbound_details.get('streamSettings', '{}'))
@@ -160,7 +160,7 @@ class ConfigGenerator:
                 flow = protocol_settings.get('clients', [{}])[0].get('flow', '')
                 if flow:
                     query_string += f"&flow={flow}"
-                return f"vless://{client_uuid}@62.60.147.236:{port}?{query_string}#{quote(remark)}"
+                return f"vless://{client_uuid}@{address}:{port}?{query_string}#{quote(remark)}"
             
             elif protocol == 'vmess':
                 # منطق ساخت لینک VMess در آینده می‌تواند اینجا اضافه شود
