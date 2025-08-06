@@ -463,7 +463,7 @@ def register_user_handlers(bot_instance, db_manager_instance, xui_api_instance):
         for config in configs:
             stripped = config['url'].replace("vless://", "", 1)
             uuid = stripped.split("@")[0]
-            text += f"vless://{uuid}@62.60.147.236:881?security=none&encryption=none&host=skyroom.online%2Cgharar.ir%2Cigap.net&headerType=http&type=tcp#Netsafe%20%D8%AA%D8%A7%D9%86%D9%84%20%F0%9F%87%AE%F0%9F%87%B7%20%3E%3E%3E%20%F0%9F%87%AB%F0%9F%87%AE%20%7C-u8227977263.s1.tuwk-8.04GB%F0%9F%93%8A-25D%2C21H%E2%8F%B3"
+            text += f"vless://{uuid}@62.60.147.236:881?security=none&encryption=none&host=skyroom.online%2Cgharar.ir%2Cigap.net&headerType=http&type=tcp#Netsafe%20%D8%AA%D8%A7%D9%86%D9%84%20%F0%9F%87%AE%F0%9F%87%B7%20%3E%3E%3E%20%F0%9F%87%AB%F0%9F%87%AE%20%7C"
         
         _bot.send_message(user_id, text, parse_mode='Markdown')
         
