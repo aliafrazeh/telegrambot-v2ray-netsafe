@@ -459,9 +459,11 @@ def register_user_handlers(bot_instance, db_manager_instance, xui_api_instance):
             return
             
         configs = purchase['single_configs_json']
+        stripped = config[url].replace("vless://", "", 1)
+        uuid = stripped.split("@")[0]
         text = messages.SINGLE_CONFIG_HEADER
         for config in configs:
-            text += f"{configs}"
+            text += f"{uuid}"
         
         _bot.send_message(user_id, text, parse_mode='Markdown')
         
