@@ -120,68 +120,54 @@ class ConfigGenerator:
         logger.info(f"Config generation successful. Sub link: {subscription_link}")
         return client_details_for_db, subscription_link, all_generated_configs
 
-    def _generate_single_config_url(self, client_uuid: str, server_data: dict, inbound_panel_details: dict) -> dict or None:
-        """
-        بر اساس جزئیات اینباند و کلاینت، یک کانفیگ تکی تولید می‌کند.
-        """
+    def _generate_single_config_url(self, client_uuid: str, server_data: dict, inbound_details: dict, remark_prefix: str) -> str or None:
         try:
-            protocol = inbound_panel_details.get('protocol')
-            remark = inbound_panel_details.get('remark', f"AlamorVPN-{server_data['name']}")
-            # آدرس تمیز شده (بدون http و پورت)
-            address = server_data['subscription_base_url'].split('//')[1].split(':')[0].split('/')[0]
-            port = inbound_panel_details.get('port')
+            protocol = inbound_details.get('protocol')
+            if protocol not in ['vless', 'vmess']: return None
 
-            stream_settings = json.loads(inbound_panel_details.get('streamSettings', '{}'))
-            network = stream_settings.get('network', 'tcp')
-            security = stream_settings.get('security', 'none')
-
-            config_url = ""
-            if protocol == 'vless':
-                flow = ""
-                if security == 'xtls':
-                    xtls_settings = stream_settings.get('xtlsSettings', {})
-                    flow = xtls_settings.get('flow', 'xtls-rprx-direct')
-
-                # Base URL
-                config_url = f"vless://{client_uuid}@{address}:{port}"
-                
-                # Parameters
-                params = {
-                    'type': network,
-                    'security': security,
-                    'flow': flow,
-                }
-
-                if network == 'ws':
-                    ws_settings = stream_settings.get('wsSettings', {})
-                    params['path'] = ws_settings.get('path', '/')
-                    params['host'] = ws_settings.get('headers', {}).get('Host', address)
-                elif network == 'grpc':
-                    grpc_settings = stream_settings.get('grpcSettings', {})
-                    params['serviceName'] = grpc_settings.get('serviceName', '')
-                
-                if security in ['tls', 'xtls', 'reality']:
-                    tls_settings = stream_settings.get('tlsSettings', {})
-                    params['sni'] = tls_settings.get('serverName', address)
-                    params['fp'] = tls_settings.get('fingerprint', '')
-                    if security == 'reality':
-                         params['pbk'] = tls_settings.get('publicKey', '')
-                         params['sid'] = tls_settings.get('shortId', '')
-
-                # Filter out empty params and join
-                query_string = '&'.join([f"{k}={quote(str(v))}" for k, v in params.items() if v])
-                config_url += f"?{query_string}#{quote(remark)}"
-
-            # Add other protocols like VMess if needed
+            remark = f"{remark_prefix}-{inbound_details.get('remark', server_data['name'])}"
+            address = '62.60.147.236'
+            port = inbound_details.get('port')
             
-            if config_url:
-                return {
-                    "remark": remark,
-                    "protocol": protocol,
-                    "network": network,
-                    "url": config_url
-                }
+            stream_settings = json.loads(inbound_details.get('streamSettings', '{}'))
+            
+            params = { 'type': stream_settings.get('network', 'tcp') }
+            
+            # استخراج هوشمند پارامترها از الگو
+            transport_settings = stream_settings.get(f"{params['type']}Settings", {})
+            if 'path' in transport_settings: params['path'] = transport_settings['path']
+            if 'host' in transport_settings: params['host'] = transport_settings.get('headers', {}).get('Host') or transport_settings.get('host')
+            if 'serviceName' in transport_settings: params['serviceName'] = transport_settings['serviceName']
+            
+            params['security'] = stream_settings.get('security', 'none')
+            if params['security'] != 'none':
+                security_settings = stream_settings.get(f"{params['security']}Settings", {})
+                if 'serverName' in security_settings: params['sni'] = security_settings['serverName']
+                if 'publicKey' in security_settings: params['pbk'] = security_settings['publicKey']
+                if 'shortIds' in security_settings:
+                    sid_list = security_settings['shortIds']
+                    if sid_list: params['sid'] = random.choice(sid_list)
+
+                nested_security_settings = security_settings.get('settings', {})
+                if 'fingerprint' in nested_security_settings: params['fp'] = nested_security_settings['fingerprint']
+                if 'publicKey' in nested_security_settings: params['pbk'] = nested_security_settings['publicKey']
+                if 'spiderX' in nested_security_settings: params['spiderX'] = nested_security_settings['spiderX']
+
+            query_string = '&'.join([f"{k}={quote(str(v))}" for k, v in params.items() if v and k != 'security' or (k == 'security' and v != 'none')])
+            
+            if protocol == 'vless':
+                protocol_settings = json.loads(inbound_details.get('settings', '{}'))
+                flow = protocol_settings.get('clients', [{}])[0].get('flow', '')
+                if flow:
+                    query_string += f"&flow={flow}"
+                return f"vless://{client_uuid}@{address}:{port}?{query_string}#{quote(remark)}"
+            
+            elif protocol == 'vmess':
+                # منطق ساخت لینک VMess در آینده می‌تواند اینجا اضافه شود
+                return None
+
         except Exception as e:
-            logger.error(f"Error generating single config URL: {e}", exc_info=True)
-            return None
+            logger.error(f"Error in _generate_single_config_url: {e}")
         return None
+    
+    
