@@ -160,7 +160,7 @@ class ConfigGenerator:
                 flow = protocol_settings.get('clients', [{}])[0].get('flow', '')
                 if flow:
                     query_string += f"&flow={flow}"
-                return f"vless://{client_uuid}@{address}:{port}?{query_string}#{quote(remark)}"
+                return f"vless://{client_uuid}@62.60.147.236:{port}?{query_string}#{quote(remark)}"
             
             elif protocol == 'vmess':
                 # منطق ساخت لینک VMess در آینده می‌تواند اینجا اضافه شود
