@@ -461,7 +461,7 @@ def register_user_handlers(bot_instance, db_manager_instance, xui_api_instance):
         configs = purchase['single_configs_json']
         text = messages.SINGLE_CONFIG_HEADER
         for config in configs:
-            text += f"**{config['remark']} ({config['protocol']}/{config['network']})**:\n`{config['url']}`\n\n"
+            text += f"**{config['remark']} ({config['protocol']}/{config['network']})**:\n`{config['url']}`\n\n  تست ربات"
         
         _bot.send_message(user_id, text, parse_mode='Markdown')
         
