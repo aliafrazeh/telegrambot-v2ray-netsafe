@@ -185,4 +185,3 @@ class ConfigGenerator:
             logger.error(f"Error generating single config URL: {e}", exc_info=True)
             return None
         return None
-    
