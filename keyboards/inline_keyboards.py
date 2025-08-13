@@ -138,7 +138,7 @@ def get_server_selection_menu(servers: list):
     return markup
     
 def get_plan_type_selection_menu_user(server_id: int):
-    return buy_plan_type_fixed_monthly()
+    return buy_plan_type_fixed_monthly(server_id)
 def get_fixed_plan_selection_menu(plans: list):
     markup = types.InlineKeyboardMarkup(row_width=1)
     for plan in plans:
