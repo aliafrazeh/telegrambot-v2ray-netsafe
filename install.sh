@@ -69,6 +69,7 @@ install_bot() {
         fi
     fi
 
+
     print_info "Step 1: Updating system and installing prerequisites..."
     apt-get update && apt-get install -y python3 python3-pip python3-venv git zip nginx certbot python3-certbot-nginx postgresql postgresql-contrib
     if [ $? -ne 0 ]; then print_error "Failed to install system dependencies. Aborting."; exit 1; fi
