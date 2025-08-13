@@ -14,7 +14,7 @@ NC='\033[0m'
 # --- Variables ---
 REPO_URL="https://github.com/aliafrazeh/telegrambot-v2ray-netsafe.git"
 PROJECT_NAME="Netsafe"
-INSTALL_DIR="/var/www/netsafebot2"
+INSTALL_DIR="/var/www/netsafe"
 BOT_SERVICE_NAME="alamorbot.service"
 WEBHOOK_SERVICE_NAME="alamor_webhook.service"
 
