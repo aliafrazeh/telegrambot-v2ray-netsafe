@@ -63,7 +63,7 @@ install_bot() {
         print_warning "Project directory already exists. Reinstalling will delete all data."
         read -p "Are you sure you want to continue? (y/n): " confirm_reinstall
         if [[ "$confirm_reinstall" == "y" ]]; then
-            echo "VAR is 1"
+            remove_bot_internal
         else
             print_info "Installation canceled."; exit 0
         fi
