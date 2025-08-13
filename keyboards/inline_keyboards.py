@@ -138,7 +138,12 @@ def get_server_selection_menu(servers: list):
     return markup
     
 def get_plan_type_selection_menu_user(server_id: int):
-    return buy_plan_type_fixed_monthly(server_id)
+    markup = types.InlineKeyboardMarkup(row_width=2)
+    markup.add(
+        types.InlineKeyboardButton("🕒 یک ماهه", callback_data="buy_plan_type_fixed_monthly"),
+    )
+    markup.add(get_back_button(f"user_buy_service").keyboard[0][0]) # Add back button
+    return markup
 def get_fixed_plan_selection_menu(plans: list):
     markup = types.InlineKeyboardMarkup(row_width=1)
     for plan in plans:
