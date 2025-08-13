@@ -14,9 +14,9 @@ NC='\033[0m'
 # --- Variables ---
 REPO_URL="https://github.com/aliafrazeh/telegrambot-v2ray-netsafe.git"
 PROJECT_NAME="Netsafe"
-INSTALL_DIR="/var/www/netsafe"
-BOT_SERVICE_NAME="alamorbot.service"
-WEBHOOK_SERVICE_NAME="alamor_webhook.service"
+INSTALL_DIR="/var/www/netsafe2"
+BOT_SERVICE_NAME="alamorbot2.service"
+WEBHOOK_SERVICE_NAME="alamor_webhook2.service"
 
 # --- Helper Functions ---
 print_success() { echo -e "\n${GREEN}✅ $1${NC}\n"; }
@@ -63,7 +63,7 @@ install_bot() {
         print_warning "Project directory already exists. Reinstalling will delete all data."
         read -p "Are you sure you want to continue? (y/n): " confirm_reinstall
         if [[ "$confirm_reinstall" == "y" ]]; then
-            remove_bot_internal
+
         else
             print_info "Installation canceled."; exit 0
         fi
@@ -177,7 +177,7 @@ server {
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
     location / {
-        proxy_pass http://127.0.0.1:8080;
+        proxy_pass http://127.0.0.1:8081;
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
     }
