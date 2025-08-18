@@ -463,7 +463,7 @@ def register_user_handlers(bot_instance, db_manager_instance, xui_api_instance):
         for config in configs:
             stripped = config['url'].replace("vless://", "", 1)
             uuid = stripped.split("@")[0]
-            text += f"vless://{uuid}http://fastly.com/?type=xhttp&path=%2F%3Fed%3D2060&host=netsafe.global.ssl.fastly.net&mode=auto&security=none#Netsafe%20%20%D9%85%D8%B3%D8%AA%D9%82%DB%8C%D9%85%20%20%F0%9F%87%AB%F0%9F%87%AE%20%7C"
+            text += f"vless://{uuid}http://fastly.com/?encryption=none&security=none&type=xhttp&host=netsafe.global.ssl.fastly.net&path=%2F%3Fed%3D2060&mode=auto#Netsafe%20%20%D9%85%D8%B3%D8%AA%D9%82%DB%8C%D9%85%20%20%F0%9F%87%AB%F0%9F%87%AE%20%7C"
         
         _bot.send_message(user_id, text, parse_mode='Markdown')
         
