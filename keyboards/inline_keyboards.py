@@ -175,9 +175,7 @@ def get_admin_payment_action_menu(payment_id: int):
         cancel_text="❌ رد کردن"
     )
     
-def get_single_configs_button(purchase_id: int):
-    markup = types.InlineKeyboardMarkup(row_width=1)
-    return markup
+
 
 def get_my_services_menu(purchases: list):
     markup = types.InlineKeyboardMarkup(row_width=1)
