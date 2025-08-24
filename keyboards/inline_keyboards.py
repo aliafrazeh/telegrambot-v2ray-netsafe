@@ -177,7 +177,6 @@ def get_admin_payment_action_menu(payment_id: int):
     
 def get_single_configs_button(purchase_id: int):
     markup = types.InlineKeyboardMarkup(row_width=1)
-    markup.add(types.InlineKeyboardButton("📄 دریافت کانفیگ‌های تکی", callback_data=f"user_get_single_configs_{purchase_id}"))
     return markup
 
 def get_my_services_menu(purchases: list):
